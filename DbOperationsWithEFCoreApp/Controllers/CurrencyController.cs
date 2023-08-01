@@ -29,5 +29,31 @@ namespace DbOperationsWithEFCoreApp.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetCurrencyByIdAsync([FromRoute] int id)
+        {
+            var result = await _appDbContext.Currencies.FindAsync(id);
+            return Ok(result);
+        }
+
+        [HttpGet("{name}")]
+        public async Task<IActionResult> GetCurrencyByNameAsync([FromRoute] string name, [FromQuery] string? description)
+        {
+            //var result = await _appDbContext.Currencies
+            //    .FirstOrDefaultAsync(x => 
+            //    x.Title == name 
+            //    && (string.IsNullOrEmpty(description) || x.Description == description)
+            //    );
+
+            var result = await _appDbContext.Currencies
+                .Where(x =>
+                x.Title == name
+                && (string.IsNullOrEmpty(description) || x.Description == description)
+                ).ToListAsync();
+
+            return Ok(result);
+        }
     }
 }
