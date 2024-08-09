@@ -25,5 +25,23 @@ namespace DbOperationsWithEFCoreApp.Controllers
 
             return Ok(model);
         }
+
+        [HttpPut("{bookId}")]
+        public async Task<IActionResult> UpdateBook([FromRoute] int bookId ,[FromBody] Book model)
+        {
+            var book = appDbContext.Books.FirstOrDefault(x => x.Id == bookId);
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+            book.Title = model.Title;
+            book.Description = model.Description;
+            book.NoOfPages = model.NoOfPages;
+
+            await appDbContext.SaveChangesAsync();
+
+            return Ok(model);
+        }
     }
 }
