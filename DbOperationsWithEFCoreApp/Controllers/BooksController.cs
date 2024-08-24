@@ -27,7 +27,7 @@ namespace DbOperationsWithEFCoreApp.Controllers
         }
 
         [HttpPut("{bookId}")]
-        public async Task<IActionResult> UpdateBook([FromRoute] int bookId ,[FromBody] Book model)
+        public async Task<IActionResult> UpdateBook([FromRoute] int bookId, [FromBody] Book model)
         {
             var book = appDbContext.Books.FirstOrDefault(x => x.Id == bookId);
             if (book == null)
@@ -39,6 +39,15 @@ namespace DbOperationsWithEFCoreApp.Controllers
             book.Description = model.Description;
             book.NoOfPages = model.NoOfPages;
 
+            await appDbContext.SaveChangesAsync();
+
+            return Ok(model);
+        }
+
+        [HttpPut("")]
+        public async Task<IActionResult> UpdateBookWithSingleQuery([FromBody] Book model)
+        {
+            appDbContext.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             await appDbContext.SaveChangesAsync();
 
             return Ok(model);
