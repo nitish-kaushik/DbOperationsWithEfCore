@@ -66,5 +66,24 @@ namespace DbOperationsWithEFCoreApp.Controllers
             );
             return Ok();
         }
+
+        [HttpDelete("{bookId}")]
+        public async Task<IActionResult> DeleteBookByIdAsync([FromRoute] int bookId)
+        {
+            var book = new Book { Id = bookId };
+            appDbContext.Entry(book).State = EntityState.Deleted;
+            await appDbContext.SaveChangesAsync();
+
+            //var book = await appDbContext.Books.FindAsync(bookId);
+
+            //if (book == null)
+            //{
+            //    return NotFound();
+            //}
+            //appDbContext.Books.Remove(book);
+            //await appDbContext.SaveChangesAsync();
+
+            return Ok();
+        }
     }
 }
