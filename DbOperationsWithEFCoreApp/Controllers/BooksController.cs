@@ -1,6 +1,7 @@
 ﻿using DbOperationsWithEFCoreApp.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DbOperationsWithEFCoreApp.Controllers
 {
@@ -51,6 +52,19 @@ namespace DbOperationsWithEFCoreApp.Controllers
             await appDbContext.SaveChangesAsync();
 
             return Ok(model);
+        }
+
+        [HttpPut("bulk")]
+        public async Task<IActionResult> UpdateBookInBulk()
+        {
+            await appDbContext.Books
+                .Where(x => x.NoOfPages == 100)
+                .ExecuteUpdateAsync(x => x
+            .SetProperty(p => p.Description, p => p.Title + " This is book description 2")
+            .SetProperty(p => p.Title, p => p.Title + " updated 2")
+            //.SetProperty(p => p.NoOfPages, 100)
+            );
+            return Ok();
         }
     }
 }
