@@ -1,5 +1,5 @@
 # Entity Framework Core Tutorial For Beginners: Complete and Step by Step | हिंदी में | NO FEE, NO HIDDEN COST
-This is a special course for Hindi audience. This course will covers all the database operations using Entity Framework Core in an Asp.Net Core Web API application.
+This is a special course for **Hindi audience**. This course will covers all the database operations using Entity Framework Core in an Asp.Net Core Web API application.
 
 ## Author
 The creator of this course is **Nitish Kaushik**. He has been awarded as Microsoft MVP award 4 times in a row in developer technologies.
@@ -11,14 +11,21 @@ You can connect Nitish using following mediums
 - **[LinkedIn](https://www.linkedin.com/in/meettonitish/)**
 - **Email : nitish.webgentle@gmail.com**
 
-Other content created by Nitish
+## Support Nitish Kaushik by Donation for free content creation
+
+Creaing the quality content takes time and effort. Kindly help us by donating.
+- UPI: nitishkaushik@icici
+- Paypal: https://www.paypal.com/paypalme/nitishkaushik
+- Join YouTube Channel Membership https://www.youtube.com/channel/UCAemUuruml0wP3o9DUqcKOw/join
+
+## Other content created by Nitish
 
 - **[Webgentle YouTube channel](https://www.youtube.com/@webgentle)**
 - **[Nitish Kaushik (English) YouTube channel](https://www.youtube.com/@nitish.kaushik)**
 - **[Nitish Kaushik (Hindi) YouTube channel](https://www.youtube.com/@nitishkaushikhindi)**
 
   
-## Learning Source
+## EF Core Course Videos
 These are FREE Videos Created by Nitish
 
 ### ✅ Course Language - Hindi ( हिंदी )
@@ -40,4 +47,6 @@ These are FREE Videos Created by Nitish
 15. ### [How to insert related data with Entity Framework Core](https://www.youtube.com/watch?v=l-gRZ00rBJE&list=PLak2C883P4cUfJpBRakIIIonC83w64mtV&index=15)
 16. ### [How to Update a Record in Database using Entity Framework Core](https://www.youtube.com/watch?v=P3oMgssijeA&list=PLak2C883P4cUfJpBRakIIIonC83w64mtV&index=16)
 17. ### [Update record using Entity Framework Core in Single Database Hit](https://www.youtube.com/watch?v=nHxCV3scw3A&list=PLak2C883P4cUfJpBRakIIIonC83w64mtV&index=17)
-18. ### More Coming Soon ...**
+18. ### [Bulk Update in Entity Framework Core in One Database Hit | ExecuteUpdateAsync](https://www.youtube.com/watch?v=pbF19XQVpxM&list=PLak2C883P4cUfJpBRakIIIonC83w64mtV&index=18)
+19. ### [How to Delete Record using Entity Framework Core ](https://www.youtube.com/watch?v=bp0sEnWvpao&list=PLak2C883P4cUfJpBRakIIIonC83w64mtV&index=19)
+20. ### [Bulk Delete in Entity Framework Core 🔥Fastest was to delete records in EF Core ](https://www.youtube.com/watch?v=kdXQWnDCYgk&list=PLak2C883P4cUfJpBRakIIIonC83w64mtV&index=20)
