@@ -25,7 +25,7 @@ namespace DbOperationsWithEFCoreApp.Controllers
 
             //var result = await _appDbContext.Currencies.ToListAsync();
             var result = await (from currencies in _appDbContext.Currencies
-                                select currencies).ToListAsync();
+                                select currencies).AsNoTracking().ToListAsync();
 
             return Ok(result);
         }
