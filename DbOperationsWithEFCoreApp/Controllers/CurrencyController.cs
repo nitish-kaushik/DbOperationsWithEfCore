@@ -7,15 +7,8 @@ namespace DbOperationsWithEFCoreApp.Controllers
 {
     [Route("api/currencies")]
     [ApiController]
-    public class CurrencyController : ControllerBase
+    public class CurrencyController(AppDbContext appDbContext) : ControllerBase
     {
-        private readonly AppDbContext _appDbContext;
-
-        public CurrencyController(AppDbContext appDbContext)
-        {
-            _appDbContext = appDbContext;
-        }
-
         [HttpGet("")]
         public async Task<IActionResult> GetAllCurrencies()
         {
@@ -24,17 +17,16 @@ namespace DbOperationsWithEFCoreApp.Controllers
             //select currencies).ToList();
 
             //var result = await _appDbContext.Currencies.ToListAsync();
-            var result = await (from currencies in _appDbContext.Currencies
+            var result = await (from currencies in appDbContext.Currencies
                                 select currencies).AsNoTracking().ToListAsync();
 
             return Ok(result);
         }
 
-
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetCurrencyByIdAsync([FromRoute] int id)
         {
-            var result = await _appDbContext.Currencies.FindAsync(id);
+            var result = await appDbContext.Currencies.FindAsync(id);
             return Ok(result);
         }
 
@@ -47,7 +39,7 @@ namespace DbOperationsWithEFCoreApp.Controllers
             //    && (string.IsNullOrEmpty(description) || x.Description == description)
             //    );
 
-            var result = await _appDbContext.Currencies
+            var result = await appDbContext.Currencies
                 .Where(x =>
                 x.Title == name
                 && (string.IsNullOrEmpty(description) || x.Description == description)
@@ -60,7 +52,7 @@ namespace DbOperationsWithEFCoreApp.Controllers
         public async Task<IActionResult> GetCurrenciesByIdsAsync([FromBody] List<int> ids)
         {
             //var ids = new List<int> { 1 };
-            var result = await _appDbContext.Currencies
+            var result = await appDbContext.Currencies
               .Where(x=> ids.Contains(x.Id))
               .ToListAsync();
 

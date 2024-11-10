@@ -9,6 +9,13 @@ namespace DbOperationsWithEFCoreApp.Controllers
     [ApiController]
     public class BooksController(AppDbContext appDbContext) : ControllerBase
     {
+        [HttpGet("")]
+        public async Task<IActionResult> GetAllBooksAsync()
+        {
+            var books = await appDbContext.Books.ToListAsync();
+            return Ok(books);
+        }
+
         [HttpPost("")]
         public async Task<IActionResult> AddNewBook([FromBody] Book model)
         {
