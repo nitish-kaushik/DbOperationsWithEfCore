@@ -12,8 +12,23 @@ namespace DbOperationsWithEFCoreApp.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAllBooksAsync()
         {
-            var books = await appDbContext.Books.ToListAsync();
-            return Ok(books);
+            var book = await appDbContext.Books.FirstAsync();
+
+            var author = book.Author;
+
+            return Ok(book);
+        }
+
+        [HttpGet("languages")]
+        public async Task<IActionResult> GetAllLanguagesAsync()
+        {
+            var languages = await appDbContext.Languages.ToListAsync();
+            foreach (var language in languages)
+            {
+                await appDbContext.Entry(language).Collection(x=>x.Books)
+                .LoadAsync();
+            }
+            return Ok(languages);
         }
 
         [HttpPost("")]
@@ -101,7 +116,7 @@ namespace DbOperationsWithEFCoreApp.Controllers
             //appDbContext.Entry(book).State = EntityState.Deleted;
             //await appDbContext.SaveChangesAsync();
 
-            var books = await appDbContext.Books.Where(x=>x.Id < 8).ExecuteDeleteAsync();
+            var books = await appDbContext.Books.Where(x => x.Id < 8).ExecuteDeleteAsync();
 
             return Ok();
         }
