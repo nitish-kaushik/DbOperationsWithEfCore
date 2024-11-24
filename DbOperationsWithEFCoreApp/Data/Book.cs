@@ -12,6 +12,6 @@
         public int? AuthorId { get; set; }
 
         //public Language? Language { get; set; }
-        public virtual Author? Author { get; set; }
+        //public virtual Author? Author { get; set; }
     }
 }

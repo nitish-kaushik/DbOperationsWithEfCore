@@ -13,18 +13,8 @@ namespace DbOperationsWithEFCoreApp.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAllBooksAsync()
         {
-            var columnName = "Id";
-            var columnValue = "1";
 
-            var parameter = new SqlParameter("columnValue", columnValue);
-
-            var books = await appDbContext.Books
-                            .FromSql($"select * from Books where {columnName} = {columnValue}")
-                            .ToListAsync();
-
-            var books1 = await appDbContext.Books
-                           .FromSqlRaw($"select * from Books where {columnName} = @columnValue", parameter)
-                           .ToListAsync();
+            var books = await appDbContext.Database.ExecuteSqlAsync($"update Books set NoOfPages = 1000 where Id = 1");
 
             return Ok(books);
         }
