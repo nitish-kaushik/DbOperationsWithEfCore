@@ -11,7 +11,8 @@ namespace DbOperationsWithEFCoreApp
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("AppDb")).LogTo(Console.WriteLine));
+            options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("AppDb")));
+            //.LogTo(Console.WriteLine, LogLevel.Information));//
 
             // Add services to the container.
 

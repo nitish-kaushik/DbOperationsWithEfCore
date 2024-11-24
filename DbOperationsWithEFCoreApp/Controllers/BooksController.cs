@@ -1,6 +1,7 @@
 ﻿using DbOperationsWithEFCoreApp.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace DbOperationsWithEFCoreApp.Controllers
@@ -12,11 +13,20 @@ namespace DbOperationsWithEFCoreApp.Controllers
         [HttpGet("")]
         public async Task<IActionResult> GetAllBooksAsync()
         {
-            var book = await appDbContext.Books.FirstAsync();
+            var columnName = "Id";
+            var columnValue = "1";
 
-            var author = book.Author;
+            var parameter = new SqlParameter("columnValue", columnValue);
 
-            return Ok(book);
+            var books = await appDbContext.Books
+                            .FromSql($"select * from Books where {columnName} = {columnValue}")
+                            .ToListAsync();
+
+            var books1 = await appDbContext.Books
+                           .FromSqlRaw($"select * from Books where {columnName} = @columnValue", parameter)
+                           .ToListAsync();
+
+            return Ok(books);
         }
 
         [HttpGet("languages")]
